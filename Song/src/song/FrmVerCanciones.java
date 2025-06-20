@@ -1,6 +1,8 @@
 package song;
 
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
+import java.awt.Image;
 
 public class FrmVerCanciones extends javax.swing.JFrame {
 
@@ -10,7 +12,7 @@ public class FrmVerCanciones extends javax.swing.JFrame {
         lblCodigo.setVisible(false);
         lblPrecio.setVisible(false);
         lblNombre.setVisible(false);
-        
+
         DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
 
         for (int i = 0; i < 5; i++) {
@@ -32,7 +34,7 @@ public class FrmVerCanciones extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         cboCanciones = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
+        btnAceptar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         lblImagen = new javax.swing.JLabel();
         lblCodigo = new javax.swing.JLabel();
@@ -46,10 +48,10 @@ public class FrmVerCanciones extends javax.swing.JFrame {
 
         cboCanciones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jButton1.setText("Aceptar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnAceptar.setText("Aceptar");
+        btnAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnAceptarActionPerformed(evt);
             }
         });
 
@@ -108,7 +110,7 @@ public class FrmVerCanciones extends javax.swing.JFrame {
                         .addGap(21, 21, 21)
                         .addComponent(cboCanciones, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(68, Short.MAX_VALUE))
@@ -123,7 +125,7 @@ public class FrmVerCanciones extends javax.swing.JFrame {
                         .addGap(109, 109, 109)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(cboCanciones, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -133,20 +135,27 @@ public class FrmVerCanciones extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         // TODO add your handling code here:
         lblImagen.setVisible(true);
         lblCodigo.setVisible(true);
         lblPrecio.setVisible(true);
         lblNombre.setVisible(true);
         Song cancion = (Song) cboCanciones.getSelectedItem();
-        
+
         lblNombre.setText(cancion.getNombre());
         lblCodigo.setText("Código: " + cancion.getCodigo());
         lblPrecio.setText("Precio: " + cancion.getPrecio());
-        lblImagen.setIcon(cancion.getDisco());
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
+        ImageIcon iconoOriginal = cancion.getDisco();
+
+        if (iconoOriginal != null) {
+            Image imagenEscalada = iconoOriginal.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+            ImageIcon iconoEscalado = new ImageIcon(imagenEscalada);
+            lblImagen.setIcon(iconoEscalado);
+        }
+
+
+    }//GEN-LAST:event_btnAceptarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -184,8 +193,8 @@ public class FrmVerCanciones extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAceptar;
     private javax.swing.JComboBox<String> cboCanciones;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblCodigo;
