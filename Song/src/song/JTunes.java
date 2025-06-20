@@ -5,6 +5,7 @@ import javax.swing.ImageIcon;
 public class JTunes {
 
     public static Song[] canciones;
+    public static int cantidadCanciones = 0;
 
     public JTunes(int capacidad) {
         canciones = new Song[capacidad];

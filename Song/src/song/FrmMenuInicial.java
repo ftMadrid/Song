@@ -1,8 +1,13 @@
 package song;
 
-public class FrmMenuInicial extends javax.swing.JFrame {
+import javax.swing.JOptionPane;
 
-    public FrmMenuInicial() {
+public class FrmMenuInicial extends javax.swing.JFrame {
+    
+    private JTunes jtunes;
+
+    public FrmMenuInicial(JTunes jtunes) {
+        this.jtunes = jtunes;
         initComponents();
     }
 
@@ -93,63 +98,36 @@ public class FrmMenuInicial extends javax.swing.JFrame {
         // TODO add your handling code here:
         dispose();
         System.exit(0);
-        
+
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         // TODO add your handling code here:
-        
-        agregarCancion agcancion = new agregarCancion();
-        agcancion.setVisible(true);
-        agcancion.setLocationRelativeTo(null);
-        dispose();
-        
+
+        if (JTunes.cantidadCanciones > 4) {
+            JOptionPane.showMessageDialog(this, "Has alcanzado el límite de canciones.");
+        } else {
+            agregarCancion agcancion = new agregarCancion(jtunes);
+            agcancion.setVisible(true);
+            agcancion.setLocationRelativeTo(null);
+            dispose();
+        }
+
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnVerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerActionPerformed
         // TODO add your handling code here:
-        
-        FrmVerCanciones vercanciones = new FrmVerCanciones();
+
+        FrmVerCanciones vercanciones = new FrmVerCanciones(jtunes);
         vercanciones.setVisible(true);
         vercanciones.setLocationRelativeTo(null);
         dispose();
-        
+
     }//GEN-LAST:event_btnVerActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmMenuInicial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmMenuInicial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmMenuInicial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmMenuInicial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FrmMenuInicial().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;

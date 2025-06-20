@@ -8,14 +8,15 @@ import javax.swing.JOptionPane;
 
 public class agregarCancion extends javax.swing.JFrame {
 
-    private JTunes jtunes = new JTunes(5);
+    private JTunes jtunes;
     
     private int codigo;
     private String nombre;
     private double precio;
     private ImageIcon imagenDisco;
 
-    public agregarCancion() {
+    public agregarCancion(JTunes jtunes) {
+        this.jtunes = jtunes;
         initComponents();
 
     }
@@ -141,14 +142,20 @@ public class agregarCancion extends javax.swing.JFrame {
             precio = Double.parseDouble(txtPrecio.getText());
             
             jtunes.addSong(codigo, nombre, precio, imagenDisco);
+            JTunes.cantidadCanciones++;
+            JOptionPane.showMessageDialog(this, "La cancion "+nombre+" ha sido agragada.");
+            FrmMenuInicial menu = new FrmMenuInicial(jtunes);
+            menu.setVisible(true);
+            menu.setLocationRelativeTo(null);
+            dispose();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error: Uno de los valores ingresados no es válido.");
+            JOptionPane.showMessageDialog(null, "Error: Uno de los valores ingresados no es válido."+e);
         }
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
         // TODO add your handling code here:
-        FrmMenuInicial menuInicio = new FrmMenuInicial();
+        FrmMenuInicial menuInicio = new FrmMenuInicial(jtunes);
         menuInicio.setVisible(true);
         menuInicio.setLocationRelativeTo(null);
         this.dispose();
@@ -171,38 +178,6 @@ public class agregarCancion extends javax.swing.JFrame {
     /**
          * @param args the command line arguments
          */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(agregarCancion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(agregarCancion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(agregarCancion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(agregarCancion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new agregarCancion().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
