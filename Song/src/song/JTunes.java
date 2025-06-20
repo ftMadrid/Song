@@ -19,5 +19,12 @@ public class JTunes {
         return null;
     }
     
+    public rateSong (int codigo, int stars) {
+        for (Song cancion : canciones) {
+            if () {
+                
+            }
+        }
+    }
     
 }
