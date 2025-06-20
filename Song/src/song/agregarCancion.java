@@ -1,13 +1,23 @@
 package song;
 
+import javax.swing.JFileChooser;
+import javax.swing.ImageIcon;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import java.io.File;
+
 public class agregarCancion extends javax.swing.JFrame {
 
     private Song canciones[];
     private JTunes jtunes = new JTunes(canciones);
+    
+    private int codigo;
+    private String nombre;
+    private double precio;
+    private ImageIcon imagenDisco;
 
     public agregarCancion() {
         initComponents();
-       
+
     }
 
     @SuppressWarnings("unchecked")
@@ -22,7 +32,7 @@ public class agregarCancion extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         txtPrecio = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        btnAgregar1 = new javax.swing.JButton();
+        btnAgregarImagen = new javax.swing.JButton();
         btnRegresar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -49,7 +59,12 @@ public class agregarCancion extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel4.setText("AGREGAR CANCION");
 
-        btnAgregar1.setText("Seleccionar Imagen");
+        btnAgregarImagen.setText("Seleccionar Imagen");
+        btnAgregarImagen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarImagenActionPerformed(evt);
+            }
+        });
 
         btnRegresar.setText("Regresar");
         btnRegresar.addActionListener(new java.awt.event.ActionListener() {
@@ -83,7 +98,7 @@ public class agregarCancion extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(btnAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnAgregar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(btnAgregarImagen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(87, 87, 87))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(btnRegresar)
@@ -107,7 +122,7 @@ public class agregarCancion extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(btnAgregar1)
+                .addComponent(btnAgregarImagen)
                 .addGap(28, 28, 28)
                 .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
@@ -120,13 +135,13 @@ public class agregarCancion extends javax.swing.JFrame {
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         // TODO add your handling code here:
-        try{
-        int codigo = Integer.parseInt(txtCodigo.getText());
-        String nombre = txtNombre.getText();
-        double precio = Double.parseDouble(txtPrecio.getText());
-        
-        jtunes.addSong(codigo, nombre, precio, imagenDisco);
-        } catch (Exception e){
+        try {
+            codigo = Integer.parseInt(txtCodigo.getText());
+            nombre = txtNombre.getText();
+            precio = Double.parseDouble(txtPrecio.getText());
+
+            jtunes.addSong(codigo, nombre, precio, imagenDisco);
+        } catch (Exception e) {
             javax.swing.JOptionPane.showMessageDialog(null, "Error: Uno de los valores ingresados no es válido.");
         }
     }//GEN-LAST:event_btnAgregarActionPerformed
@@ -138,9 +153,23 @@ public class agregarCancion extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnRegresarActionPerformed
 
+    private void btnAgregarImagenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarImagenActionPerformed
+        // TODO add your handling code here:
+        JFileChooser fileChooser = new JFileChooser();
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("jpg", "jpeg", "png");
+        fileChooser.setFileFilter(filter);
+
+        int resultado = fileChooser.showOpenDialog(this);
+        if (resultado == JFileChooser.APPROVE_OPTION) {
+            File archivoSeleccionado = fileChooser.getSelectedFile();
+            imagenDisco = new ImageIcon(archivoSeleccionado.getAbsolutePath());
+            javax.swing.JOptionPane.showMessageDialog(null, "Imagen seleccionada correctamente!");
+        }
+    }//GEN-LAST:event_btnAgregarImagenActionPerformed
+
     /**
-     * @param args the command line arguments
-     */
+         * @param args the command line arguments
+         */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -176,7 +205,7 @@ public class agregarCancion extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
-    private javax.swing.JButton btnAgregar1;
+    private javax.swing.JButton btnAgregarImagen;
     private javax.swing.JButton btnRegresar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
