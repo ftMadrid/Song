@@ -46,9 +46,4 @@ public class Song {
         return sumaEstrellas / totalReviews;
     }
 
-    @Override
-    public String toString() {
-        return nombre;
-    }
-
 }
