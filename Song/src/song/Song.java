@@ -44,13 +44,5 @@ public class Song {
         
         public int sonRating(){
             return sumaEstrellas / totalReviews;
-        }
-        
-        
-        
-        
-        
-        
-       
-    
+        }    
 }
