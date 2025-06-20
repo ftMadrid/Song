@@ -10,18 +10,23 @@ public class FrmVerCanciones extends javax.swing.JFrame {
 
     public FrmVerCanciones(JTunes jtunes) {
         initComponents();
+         this.jtunes = jtunes;
+
         lblImagen.setVisible(false);
         lblCodigo.setVisible(false);
         lblPrecio.setVisible(false);
         lblNombre.setVisible(false);
 
-        DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
+        DefaultComboBoxModel<Song> modelo = new DefaultComboBoxModel<>();
 
-        for (int i = 0; i < 5; i++) {
-            if (JTunes.canciones[i] != null) {
-                modelo.addElement(JTunes.canciones[i].getNombre());
+        Song[] canciones = jtunes.getAllSongs(); // getter para obtener el arreglo
+
+        for (int i = 0; i < canciones.length; i++) {
+            if (canciones[i] != null) {
+                modelo.addElement(canciones[i]);
             }
         }
+
         cboCanciones.setModel(modelo);
     }
 
@@ -70,18 +75,18 @@ public class FrmVerCanciones extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblPrecio)
+                .addGap(102, 102, 102))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addComponent(lblImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(lblCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(lblNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(45, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblPrecio)
-                .addGap(102, 102, 102))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -128,7 +133,7 @@ public class FrmVerCanciones extends javax.swing.JFrame {
                                 .addComponent(btnRegresar)))
                         .addGap(18, 18, 18)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(68, Short.MAX_VALUE))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -166,7 +171,7 @@ public class FrmVerCanciones extends javax.swing.JFrame {
         ImageIcon iconoOriginal = cancion.getDisco();
 
         if (iconoOriginal != null) {
-            Image imagenEscalada = iconoOriginal.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+            Image imagenEscalada = iconoOriginal.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
             ImageIcon iconoEscalado = new ImageIcon(imagenEscalada);
             lblImagen.setIcon(iconoEscalado);
         }
