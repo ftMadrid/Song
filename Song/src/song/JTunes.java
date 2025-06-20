@@ -4,7 +4,7 @@ import javax.swing.ImageIcon;
 
 public class JTunes {
 
-    private Song canciones[];
+    public static Song[] canciones;
 
     public JTunes(int capacidad) {
         canciones = new Song[capacidad];

@@ -7,14 +7,14 @@ public class FrmVerCanciones extends javax.swing.JFrame {
     public FrmVerCanciones() {
         initComponents();
         
-        /*DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
+        DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
 
         for (int i = 0; i < 5; i++) {
             if (JTunes.canciones[i] != null) {
                 modelo.addElement(JTunes.canciones[i].getNombre());
             }
         }
-        jComboBox1.setModel(modelo);*/
+        jComboBox1.setModel(modelo);
     }
 
     /**
