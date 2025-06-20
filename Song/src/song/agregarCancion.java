@@ -8,7 +8,7 @@ import java.io.File;
 public class agregarCancion extends javax.swing.JFrame {
 
     private Song canciones[];
-    private JTunes jtunes = new JTunes(canciones);
+    private JTunes jtunes = new JTunes(5);
     
     private int codigo;
     private String nombre;
