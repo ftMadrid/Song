@@ -4,10 +4,10 @@ import javax.swing.JFileChooser;
 import javax.swing.ImageIcon;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.File;
+import javax.swing.JOptionPane;
 
 public class agregarCancion extends javax.swing.JFrame {
 
-    private Song canciones[];
     private JTunes jtunes = new JTunes(5);
     
     private int codigo;
@@ -139,10 +139,10 @@ public class agregarCancion extends javax.swing.JFrame {
             codigo = Integer.parseInt(txtCodigo.getText());
             nombre = txtNombre.getText();
             precio = Double.parseDouble(txtPrecio.getText());
-
+            
             jtunes.addSong(codigo, nombre, precio, imagenDisco);
         } catch (Exception e) {
-            javax.swing.JOptionPane.showMessageDialog(null, "Error: Uno de los valores ingresados no es válido.");
+            JOptionPane.showMessageDialog(null, "Error: Uno de los valores ingresados no es válido.");
         }
     }//GEN-LAST:event_btnAgregarActionPerformed
 
@@ -150,6 +150,7 @@ public class agregarCancion extends javax.swing.JFrame {
         // TODO add your handling code here:
         FrmMenuInicial menuInicio = new FrmMenuInicial();
         menuInicio.setVisible(true);
+        menuInicio.setLocationRelativeTo(null);
         this.dispose();
     }//GEN-LAST:event_btnRegresarActionPerformed
 
@@ -163,7 +164,7 @@ public class agregarCancion extends javax.swing.JFrame {
         if (resultado == JFileChooser.APPROVE_OPTION) {
             File archivoSeleccionado = fileChooser.getSelectedFile();
             imagenDisco = new ImageIcon(archivoSeleccionado.getAbsolutePath());
-            javax.swing.JOptionPane.showMessageDialog(null, "Imagen seleccionada correctamente!");
+            JOptionPane.showMessageDialog(null, "Imagen seleccionada correctamente!");
         }
     }//GEN-LAST:event_btnAgregarImagenActionPerformed
 

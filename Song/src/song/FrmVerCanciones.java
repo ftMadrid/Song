@@ -1,31 +1,20 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package song;
 
 import javax.swing.DefaultComboBoxModel;
 
-/**
- *
- * @author edwin
- */
 public class FrmVerCanciones extends javax.swing.JFrame {
-    
-    private Song canciones[];
 
     public FrmVerCanciones() {
         initComponents();
         
-        DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
+        /*DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
 
         for (int i = 0; i < 5; i++) {
-            if (canciones[i] != null) {
-                modelo.addElement(canciones[i].getNombre());
+            if (JTunes.canciones[i] != null) {
+                modelo.addElement(JTunes.canciones[i].getNombre());
             }
         }
-        jComboBox1.setModel(modelo);
-        
+        jComboBox1.setModel(modelo);*/
     }
 
     /**
