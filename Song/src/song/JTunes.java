@@ -6,8 +6,8 @@ public class JTunes {
 
     private Song canciones[];
 
-    public JTunes(Song canciones[]) {
-        this.canciones = canciones;
+    public JTunes(int capacidad) {
+        this.canciones = new Song[capacidad];
     }
 
     public boolean addSong(int codigo, String nombre, double precio, ImageIcon imagenDisco) {
@@ -17,7 +17,6 @@ public class JTunes {
                     canciones[i] = new Song(codigo, nombre, precio, imagenDisco);
                     return true;
                 }
-                return false;
             }
         }
         return false;
@@ -40,8 +39,8 @@ public class JTunes {
         }
         return null;
     }
-    
-    public Song getAllSongs(){
+
+    public Song getAllSongs() {
         for (Song cancione : canciones) {
             if (cancione != null) {
                 return cancione;
