@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 public class agregarCancion extends javax.swing.JFrame {
 
     private JTunes jtunes;
-    
+
     private int codigo;
     private String nombre;
     private double precio;
@@ -141,21 +141,32 @@ public class agregarCancion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        // TODO add your handling code here:
+
         try {
             codigo = Integer.parseInt(txtCodigo.getText());
             nombre = txtNombre.getText();
             precio = Double.parseDouble(txtPrecio.getText());
-            
-            jtunes.addSong(codigo, nombre, precio, imagenDisco);
-            JTunes.cantidadCanciones++;
-            JOptionPane.showMessageDialog(this, "La cancion "+nombre+" ha sido agragada.");
-            FrmMenuInicial menu = new FrmMenuInicial(jtunes);
-            menu.setVisible(true);
-            menu.setLocationRelativeTo(null);
-            dispose();
+
+            if (jtunes.searchSong(codigo) != null) {
+                JOptionPane.showMessageDialog(this, "Ya existe una canción con ese código.");
+                return;
+            }
+
+            boolean agregado = jtunes.addSong(codigo, nombre, precio, imagenDisco);
+
+            if (agregado) {
+                JOptionPane.showMessageDialog(this, "La canción " + nombre + " ha sido agregada.");
+                FrmMenuInicial menu = new FrmMenuInicial(jtunes);
+                menu.setVisible(true);
+                menu.setLocationRelativeTo(null);
+                dispose();
+            } else {
+                JOptionPane.showMessageDialog(this, "No se pudo agregar la canción. Se alcanzó el límite de canciones.");
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Error: Código y precio deben ser valores numéricos válidos.");
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error: Uno de los valores ingresados no es válido."+e);
+            JOptionPane.showMessageDialog(this, "Error ocurrido: " + e.getMessage());
         }
     }//GEN-LAST:event_btnAgregarActionPerformed
 
@@ -182,8 +193,8 @@ public class agregarCancion extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAgregarImagenActionPerformed
 
     /**
-         * @param args the command line arguments
-         */
+     * @param args the command line arguments
+     */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
